@@ -1,0 +1,19 @@
+class Solution {
+public:
+   void dfs(int r, int c, vector<vector<int>>& grid,int color,int sr){
+        int n=grid.size(), m=grid[0].size();
+        if(r>=0 && r<n && c>=0 && c<m &&grid[r][c]==sr) {
+            grid[r][c]=color;
+            dfs(r+1,c,grid,color,sr);
+            dfs(r-1,c,grid,color,sr);
+            dfs(r,c+1,grid,color,sr);
+            dfs(r,c-1,grid,color,sr);
+        }
+    }
+    vector<vector<int>> floodFill(vector<vector<int>>& grid, int sr, int sc, int color) {
+        int n=grid.size(), m=grid[0].size(),cnt=0;
+        if(color==grid[sr][sc]) return grid;
+        dfs(sr,sc,grid,color,grid[sr][sc]);
+        return grid;
+    }
+};
